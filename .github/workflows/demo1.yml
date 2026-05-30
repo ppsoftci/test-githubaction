@@ -14,7 +14,7 @@ jobs:
     name: Deployment
     runs-on: ubuntu-latest
     steps:
-      - name: Outpout event data
+      - name: Outpout event datad
         run: echo "${{ toJson(github.event) }}"
 
       - name: Get Code
