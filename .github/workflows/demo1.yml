@@ -1,0 +1,35 @@
+name: Events Demo 1
+
+on:
+  pull_request:
+    types: [opened]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deployment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Outpout event data
+        run: echo "${{ toJson(github.event) }}"
+
+      - name: Get Code
+        uses: actions/checkout@v6
+
+      - name: Setup Nodejs
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Install Dependency
+        run: npm ci
+
+      - name: Test code
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy project
+        run: echo "Deploying..."
+
